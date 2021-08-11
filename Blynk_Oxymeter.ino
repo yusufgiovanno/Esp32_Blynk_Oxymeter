@@ -30,9 +30,9 @@ HBeat = V1
 
 MAX30105 particleSensor;
 
-char auth[] = "Your   Blynk  Auth";
-char ssid[] = "Your   Wifi   SSID";
-char pass[] = "Your   Wifi   Password";
+char auth[] = "nu0H1e7u-mKze6MVB3XHo_s0TrgIsj-C";
+char ssid[] = "kost 452";
+char pass[] = "Malang2021";
 
 double avered = 0; 
 double aveir = 0;
@@ -132,8 +132,10 @@ void loop(){
         if (ir < FINGER_ON) ESpO2 = MINIMUM_SPO2;
         float temperature = particleSensor.readTemperatureF();
         Blynk.run();
+        
         Blynk.virtualWrite(V0,ESpO2);
         Blynk.virtualWrite(V1,beatAvg);
+        Blynk.virtualWrite(V2,beatsPerMinute);
         Serial.print(" Oxygen % = ");
         Serial.println(ESpO2);
       }
@@ -142,7 +144,6 @@ void loop(){
       double R = (sqrt(sumredrms) / avered) / (sqrt(sumirrms) / aveir);
       SpO2 = -23.3 * (R - 0.4) + 100;
       ESpO2 = FSpO2 * ESpO2 + (1.0 - FSpO2) * SpO2;
-
       sumredrms = 0.0; sumirrms = 0.0; i = 0;
       break;
     }
